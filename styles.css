@@ -1,0 +1,538 @@
+:root {
+  --cream: #ddd9cc;
+  --brown: #794a38;
+  --navy: #151a3d;
+  --ice: #bdd1df;
+  --wine: #3d1022;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background: var(--cream);
+  font-family: Arial, Helvetica, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.synth {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100vw;
+  height: 100svh;
+  min-height: 520px;
+  overflow: hidden;
+}
+
+.panel {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.panel--light {
+  background: var(--cream);
+}
+
+.panel--brown {
+  background: var(--brown);
+}
+
+.panel--brown > .art {
+  transform: translateY(-70px);
+}
+
+.art {
+  position: absolute;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.art--logo {
+  top: 4.8%;
+  left: 4.7%;
+  width: 51%;
+}
+
+.art--scribble {
+  top: 2.8%;
+  right: 3.9%;
+  width: 25%;
+}
+
+.art--figure {
+  top: 26.4%;
+  left: 24.7%;
+  width: 49.5%;
+}
+
+.art--star {
+  top: 61.7%;
+  left: 7.1%;
+  width: 15.6%;
+}
+
+.art--dots {
+  top: 7.4%;
+  left: 7.5%;
+  width: 15.5%;
+}
+
+.art--flower {
+  top: 13.5%;
+  left: 24.6%;
+  width: 50.8%;
+}
+
+.art--petal-left {
+  top: 35.6%;
+  left: 9.3%;
+  width: 20.4%;
+}
+
+.art--petal-right {
+  top: 18.9%;
+  right: 12.9%;
+  width: 17.5%;
+}
+
+.art--japanese {
+  top: 55.2%;
+  right: 3.2%;
+  width: 60%;
+}
+
+.keys {
+  position: absolute;
+  bottom: 4.1%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3.45%;
+  width: 83.3%;
+  height: 13.6%;
+}
+
+.keys--left {
+  left: 8.5%;
+}
+
+.keys--right {
+  right: 8.5%;
+}
+
+.key {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  touch-action: none;
+  transition: transform 90ms ease, filter 90ms ease, opacity 90ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.key--dark {
+  background: var(--navy);
+}
+
+.key--blue {
+  background: var(--ice);
+}
+
+.key span {
+  position: absolute;
+  right: 10px;
+  bottom: 7px;
+  color: rgba(255, 255, 255, 0.34);
+  font-size: clamp(9px, 0.7vw, 13px);
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.synth:hover .key span,
+.key:focus-visible span {
+  opacity: 1;
+}
+
+.key:hover {
+  filter: brightness(1.08);
+}
+
+.key:focus-visible {
+  outline: 4px solid rgba(255, 255, 255, 0.9);
+  outline-offset: -4px;
+}
+
+.key.is-active {
+  z-index: 1;
+  transform: translateY(5px) scale(0.965);
+  filter: brightness(1.28);
+  opacity: 0.82;
+}
+
+.wave-switch {
+  position: absolute;
+  z-index: 8;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.wave-switch--english {
+  top: 4.5%;
+  left: 5.2%;
+  color: var(--navy);
+}
+
+.wave-switch--japanese {
+  top: 4.5%;
+  right: 5.2%;
+  color: var(--ice);
+}
+
+.wave-option {
+  padding: 3px 1px;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  font-size: clamp(9px, 0.65vw, 12px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.34;
+  text-transform: uppercase;
+  transition: opacity 120ms ease, transform 120ms ease, border-color 120ms ease;
+}
+
+.wave-option:hover,
+.wave-option:focus-visible {
+  opacity: 0.75;
+}
+
+.wave-option:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.wave-option.is-selected {
+  border-color: currentColor;
+  opacity: 0.82;
+  transform: scale(1.04);
+}
+
+.panel--light.is-sounding .art--figure {
+  animation: figure-breathe 720ms ease-in-out infinite alternate;
+}
+
+.panel--brown.is-sounding .art--flower {
+  animation: flower-breathe 680ms ease-in-out infinite alternate;
+}
+
+.panel--brown.is-sounding .art--petal-left,
+.panel--brown.is-sounding .art--petal-right {
+  animation: petal-drift 760ms ease-in-out infinite alternate;
+}
+
+@keyframes figure-breathe {
+  from { transform: scale(1); }
+  to { transform: scale(1.012) rotate(-0.3deg); }
+}
+
+@keyframes flower-breathe {
+  from { transform: translateY(-70px) scale(1); }
+  to { transform: translateY(-70px) scale(1.012) rotate(0.35deg); }
+}
+
+@keyframes petal-drift {
+  from { transform: translateY(-70px) rotate(0deg); }
+  to { transform: translateY(-73px) rotate(1deg); }
+}
+
+.tone-control {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  bottom: 23.7%;
+  width: min(24.4vw, 500px);
+  min-width: 260px;
+  transform: translateX(-50%);
+}
+
+.tone-control label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.tone-control input {
+  width: 100%;
+  height: 62px;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: ew-resize;
+  touch-action: none;
+}
+
+.tone-control input::-webkit-slider-runnable-track {
+  height: 58%;
+  border-radius: 999px;
+  background: var(--wine);
+}
+
+.tone-control input::-moz-range-track {
+  height: 58%;
+  border-radius: 999px;
+  background: var(--wine);
+}
+
+.tone-control input::-webkit-slider-thumb {
+  width: 63px;
+  height: 63px;
+  margin-top: -13px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 8px solid white;
+  border-radius: 50%;
+  background: var(--wine);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.08);
+}
+
+.tone-control input::-moz-range-thumb {
+  width: 47px;
+  height: 47px;
+  border: 8px solid white;
+  border-radius: 50%;
+  background: var(--wine);
+}
+
+.tone-control input:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 4px;
+  border-radius: 999px;
+}
+
+@media (max-aspect-ratio: 4 / 3) {
+  .synth {
+    min-height: 640px;
+  }
+
+  .art--logo {
+    top: 7%;
+    width: 60%;
+  }
+
+  .art--scribble {
+    top: 8%;
+    width: 28%;
+  }
+
+  .art--figure {
+    top: 30%;
+    left: 14%;
+    width: 70%;
+  }
+
+  .art--star {
+    top: 65%;
+    width: 20%;
+  }
+
+  .art--flower {
+    top: 20%;
+    left: 14%;
+    width: 72%;
+  }
+
+  .art--japanese {
+    top: 57%;
+    width: 78%;
+  }
+
+  .keys {
+    bottom: 3.5%;
+    width: 90%;
+    height: 12%;
+    gap: 4%;
+  }
+
+  .keys--left {
+    left: 5%;
+  }
+
+  .keys--right {
+    right: 5%;
+  }
+
+  .tone-control {
+    bottom: 21.5%;
+    width: 38vw;
+  }
+
+}
+
+@media (max-width: 620px) {
+  body {
+    overflow: auto;
+  }
+
+  .synth {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100svh;
+    min-height: 700px;
+  }
+
+  .panel {
+    height: 100%;
+  }
+
+  .art--logo {
+    top: 5%;
+    left: 4%;
+    width: 42%;
+  }
+
+  .art--scribble {
+    top: 3%;
+    right: 8%;
+    width: 19%;
+  }
+
+  .art--figure {
+    top: 8%;
+    left: 34%;
+    width: 38%;
+  }
+
+  .art--star {
+    top: 42%;
+    left: 8%;
+    width: 12%;
+  }
+
+  .art--dots {
+    top: 4%;
+    left: 6%;
+    width: 12%;
+  }
+
+  .art--flower {
+    top: 3%;
+    left: 32%;
+    width: 37%;
+  }
+
+  .art--petal-left {
+    top: 24%;
+    left: 20%;
+    width: 13%;
+  }
+
+  .art--petal-right {
+    top: 10%;
+    right: 10%;
+    width: 12%;
+  }
+
+  .art--japanese {
+    top: 17%;
+    right: 2%;
+    width: 32%;
+  }
+
+  .wave-switch--english {
+    top: 3%;
+    left: 4%;
+  }
+
+  .wave-switch--japanese {
+    top: 3%;
+    right: 4%;
+  }
+
+  .wave-option {
+    font-size: 8px;
+  }
+
+  .keys {
+    bottom: 5%;
+    width: 88%;
+    height: 35%;
+    gap: 4%;
+  }
+
+  .keys--left {
+    left: 6%;
+  }
+
+  .keys--right {
+    right: 6%;
+  }
+
+  .tone-control {
+    bottom: 47.5%;
+    width: 68vw;
+    min-width: 220px;
+  }
+
+  .tone-control input {
+    height: 48px;
+  }
+
+  .tone-control input::-webkit-slider-thumb {
+    width: 48px;
+    height: 48px;
+    margin-top: -10px;
+    border-width: 6px;
+  }
+
+  .tone-control input::-moz-range-thumb {
+    width: 36px;
+    height: 36px;
+    border-width: 6px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .key,
+  .key span,
+  .wave-option {
+    transition: none;
+  }
+
+  .panel--light.is-sounding .art--figure,
+  .panel--brown.is-sounding .art--flower,
+  .panel--brown.is-sounding .art--petal-left,
+  .panel--brown.is-sounding .art--petal-right {
+    animation: none;
+  }
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ddd9cc" />
+    <title>Zuroka Melys — синтезатор</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="synth" aria-label="Музыкальный синтезатор">
+      <section class="panel panel--light" data-synth-panel="english" aria-label="Voice A, English">
+        <img class="art art--logo" src="assets/logo.png" alt="Zuroka Melys" />
+        <img class="art art--scribble" src="assets/scribble.png" alt="" />
+        <img class="art art--figure" src="assets/figure.png" alt="Абстрактный силуэт в шляпе" />
+        <img class="art art--star" src="assets/star.png" alt="" />
+
+        <div class="wave-switch wave-switch--english" role="group" aria-label="Waveform English">
+          <button class="wave-option is-selected" type="button" data-synth="english" data-wave="sine" aria-pressed="true">sine</button>
+          <button class="wave-option" type="button" data-synth="english" data-wave="triangle" aria-pressed="false">triangle</button>
+        </div>
+
+        <div class="keys keys--left" role="group" aria-label="Низкие клавиши">
+          <button class="key key--dark" data-synth="english" data-note="C4" data-key="A" aria-label="English, нота до, клавиша A"><span>A</span></button>
+          <button class="key key--dark" data-synth="english" data-note="D4" data-key="S" aria-label="English, нота ре, клавиша S"><span>S</span></button>
+          <button class="key key--dark" data-synth="english" data-note="E4" data-key="D" aria-label="English, нота ми, клавиша D"><span>D</span></button>
+          <button class="key key--dark" data-synth="english" data-note="G4" data-key="F" aria-label="English, нота соль, клавиша F"><span>F</span></button>
+        </div>
+      </section>
+
+      <section class="panel panel--brown" data-synth-panel="japanese" aria-label="Voice B, Japanese">
+        <img class="art art--dots" src="assets/dots.png" alt="" />
+        <img class="art art--flower" src="assets/flower.png" alt="Голубой цветок сакуры" />
+        <img class="art art--petal-left" src="assets/petal-left.png" alt="" />
+        <img class="art art--petal-right" src="assets/petal-right.png" alt="" />
+        <img class="art art--japanese" src="assets/japanese.png" alt="Японская каллиграфия" />
+
+        <div class="wave-switch wave-switch--japanese" role="group" aria-label="Waveform Japanese">
+          <button class="wave-option is-selected" type="button" data-synth="japanese" data-wave="square" aria-pressed="true">square</button>
+          <button class="wave-option" type="button" data-synth="japanese" data-wave="sawtooth" aria-pressed="false">saw</button>
+        </div>
+
+        <div class="keys keys--right" role="group" aria-label="Высокие клавиши">
+          <button class="key key--blue" data-synth="japanese" data-note="A4" data-key="J" aria-label="Japanese, нота ля, клавиша J"><span>J</span></button>
+          <button class="key key--blue" data-synth="japanese" data-note="C5" data-key="K" aria-label="Japanese, нота до, клавиша K"><span>K</span></button>
+          <button class="key key--blue" data-synth="japanese" data-note="D5" data-key="L" aria-label="Japanese, нота ре, клавиша L"><span>L</span></button>
+          <button class="key key--blue" data-synth="japanese" data-note="E5" data-key=";" aria-label="Japanese, нота ми, клавиша точка с запятой"><span>;</span></button>
+        </div>
+      </section>
+
+      <div class="tone-control">
+        <label for="tone">Perspective: English clean to Japanese clean</label>
+        <input id="tone" type="range" min="0" max="100" value="50" aria-label="Perspective между English и Japanese" aria-valuetext="English и Japanese обработаны одинаково" />
+      </div>
+
+    </main>
+    <script src="synth.js"></script>
+  </body>
+</html>
