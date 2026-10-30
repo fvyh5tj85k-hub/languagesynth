@@ -1,59 +1,85 @@
 <!doctype html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ddd9cc" />
-    <title>Zuroka Melys — синтезатор</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main class="synth" aria-label="Музыкальный синтезатор">
-      <section class="panel panel--light" data-synth-panel="english" aria-label="Voice A, English">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ddd9cc" />
+  <title>Zuroka Melys — two voices, one rhythm</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="synth" aria-label="Zuroka Melys — музыкальный инструмент">
+    <section class="panel panel--light" data-synth-panel="english" aria-label="English synthesizer">
+      <div class="artwork">
         <img class="art art--logo" src="assets/logo.png" alt="Zuroka Melys" />
         <img class="art art--scribble" src="assets/scribble.png" alt="" />
         <img class="art art--figure" src="assets/figure.png" alt="Абстрактный силуэт в шляпе" />
         <img class="art art--star" src="assets/star.png" alt="" />
-
-        <div class="wave-switch wave-switch--english" role="group" aria-label="Waveform English">
-          <button class="wave-option is-selected" type="button" data-synth="english" data-wave="sine" aria-pressed="true">sine</button>
-          <button class="wave-option" type="button" data-synth="english" data-wave="triangle" aria-pressed="false">triangle</button>
+        <p class="voice-caption">VOICE 01 <span>/ ENGLISH</span></p>
+      </div>
+      <div class="voice-controls">
+        <div class="voice-heading"><span>01 / THE SPEAKER</span><span class="activity" aria-label="Активность English"></span></div>
+        <div class="voice-settings">
+          <div class="wave-switch" role="group" aria-label="English waveform">
+            <button class="wave-option is-selected" data-synth="english" data-wave="sine" aria-pressed="true"><svg viewBox="0 0 64 24" aria-hidden="true"><path d="M2 12 Q9 -8 17 12 T32 12 T47 12 T62 12"/></svg>SINE</button>
+            <button class="wave-option" data-synth="english" data-wave="triangle" aria-pressed="false"><svg viewBox="0 0 64 24" aria-hidden="true"><path d="M2 12 L10 2 25 22 40 2 55 22 62 12"/></svg>TRIANGLE</button>
+          </div>
+          <div class="voice-sliders" data-controls="english"></div>
         </div>
-
-        <div class="keys keys--left" role="group" aria-label="Низкие клавиши">
-          <button class="key key--dark" data-synth="english" data-note="C4" data-key="A" aria-label="English, нота до, клавиша A"><span>A</span></button>
-          <button class="key key--dark" data-synth="english" data-note="D4" data-key="S" aria-label="English, нота ре, клавиша S"><span>S</span></button>
-          <button class="key key--dark" data-synth="english" data-note="E4" data-key="D" aria-label="English, нота ми, клавиша D"><span>D</span></button>
-          <button class="key key--dark" data-synth="english" data-note="G4" data-key="F" aria-label="English, нота соль, клавиша F"><span>F</span></button>
+        <div class="keys" role="group" aria-label="English notes">
+          <button class="key" data-synth="english" data-note="C4" data-key="A"><span>A</span><small>C4</small></button>
+          <button class="key" data-synth="english" data-note="D4" data-key="S"><span>S</span><small>D4</small></button>
+          <button class="key" data-synth="english" data-note="E4" data-key="D"><span>D</span><small>E4</small></button>
+          <button class="key" data-synth="english" data-note="G4" data-key="F"><span>F</span><small>G4</small></button>
         </div>
-      </section>
-
-      <section class="panel panel--brown" data-synth-panel="japanese" aria-label="Voice B, Japanese">
+      </div>
+    </section>
+    <section class="panel panel--brown" data-synth-panel="japanese" aria-label="Japanese synthesizer">
+      <div class="artwork">
         <img class="art art--dots" src="assets/dots.png" alt="" />
         <img class="art art--flower" src="assets/flower.png" alt="Голубой цветок сакуры" />
         <img class="art art--petal-left" src="assets/petal-left.png" alt="" />
         <img class="art art--petal-right" src="assets/petal-right.png" alt="" />
-        <img class="art art--japanese" src="assets/japanese.png" alt="Японская каллиграфия" />
-
-        <div class="wave-switch wave-switch--japanese" role="group" aria-label="Waveform Japanese">
-          <button class="wave-option is-selected" type="button" data-synth="japanese" data-wave="square" aria-pressed="true">square</button>
-          <button class="wave-option" type="button" data-synth="japanese" data-wave="sawtooth" aria-pressed="false">saw</button>
-        </div>
-
-        <div class="keys keys--right" role="group" aria-label="Высокие клавиши">
-          <button class="key key--blue" data-synth="japanese" data-note="A4" data-key="J" aria-label="Japanese, нота ля, клавиша J"><span>J</span></button>
-          <button class="key key--blue" data-synth="japanese" data-note="C5" data-key="K" aria-label="Japanese, нота до, клавиша K"><span>K</span></button>
-          <button class="key key--blue" data-synth="japanese" data-note="D5" data-key="L" aria-label="Japanese, нота ре, клавиша L"><span>L</span></button>
-          <button class="key key--blue" data-synth="japanese" data-note="E5" data-key=";" aria-label="Japanese, нота ми, клавиша точка с запятой"><span>;</span></button>
-        </div>
-      </section>
-
-      <div class="tone-control">
-        <label for="tone">Perspective: English clean to Japanese clean</label>
-        <input id="tone" type="range" min="0" max="100" value="50" aria-label="Perspective между English и Japanese" aria-valuetext="English и Japanese обработаны одинаково" />
+        <img class="art art--japanese" src="assets/japanese.png" alt="あなたを理解できない — Я не могу тебя понять" />
+        <p class="voice-caption">VOICE 02 <span>/ JAPANESE</span></p>
       </div>
-
-    </main>
-    <script src="synth.js"></script>
-  </body>
+      <div class="voice-controls">
+        <div class="voice-heading"><span>02 / THE LISTENER</span><span class="activity" aria-label="Активность Japanese"></span></div>
+        <div class="voice-settings">
+          <div class="wave-switch" role="group" aria-label="Japanese waveform">
+            <button class="wave-option is-selected" data-synth="japanese" data-wave="square" aria-pressed="true"><svg viewBox="0 0 64 24" aria-hidden="true"><path d="M2 22 V2 H17 V22 H32 V2 H47 V22 H62 V2"/></svg>SQUARE</button>
+            <button class="wave-option" data-synth="japanese" data-wave="sawtooth" aria-pressed="false"><svg viewBox="0 0 64 24" aria-hidden="true"><path d="M2 22 L22 2 V22 L42 2 V22 L62 2 V22"/></svg>SAWTOOTH</button>
+          </div>
+          <div class="voice-sliders" data-controls="japanese"></div>
+        </div>
+        <div class="keys" role="group" aria-label="Japanese notes">
+          <button class="key" data-synth="japanese" data-note="A4" data-key="J"><span>J</span><small>A4</small></button>
+          <button class="key" data-synth="japanese" data-note="C5" data-key="K"><span>K</span><small>C5</small></button>
+          <button class="key" data-synth="japanese" data-note="D5" data-key="L"><span>L</span><small>D5</small></button>
+          <button class="key" data-synth="japanese" data-note="E5" data-key=";"><span>;</span><small>E5</small></button>
+        </div>
+      </div>
+    </section>
+    <section class="perspective" aria-label="Perspective и эффекты">
+      <div class="perspective-title"><label for="tone">PERSPECTIVE</label><output for="tone" id="perspective-value">50 / 50</output></div>
+      <input id="tone" type="range" min="0" max="100" value="50" aria-label="Perspective" />
+      <div class="perspective-hints"><span>ENGLISH CLEARER ←</span><span>→ JAPANESE CLEARER</span></div>
+      <div class="effect-controls" id="effect-controls"></div>
+      <p class="effect-caption">TWO VOICES. A SHIFT IN UNDERSTANDING.</p>
+    </section>
+    <section class="rhythm" aria-label="Ритм-секция">
+      <header class="rhythm-header">
+        <div class="rhythm-title"><h1>RHYTHM<span> / 共通のリズム</span></h1><p>A COMMON LANGUAGE · 16 STEPS</p></div>
+        <div class="transport"><button id="play" aria-pressed="false">▶ PLAY</button><button id="stop">■ STOP</button></div>
+        <label class="tempo" for="bpm"><span>TEMPO <output id="bpm-value" for="bpm">120 BPM</output></span><input id="bpm" type="range" min="60" max="180" value="120" /></label>
+        <label class="master-control" for="master"><span>MASTER <output for="master" id="master-value">70%</output></span><input id="master" type="range" min="0" max="100" value="70" /></label>
+      </header>
+      <div class="rhythm-body"><div class="sequencer-scroll"><div id="sequencer" class="sequencer" role="group" aria-label="Секвенсор 4 на 16"></div></div>
+        <aside class="output"><span>STEREO OUTPUT</span><label>LEFT <meter id="meter-left" min="0" max="1" value="0" aria-label="Left output"></meter></label><label>RIGHT <meter id="meter-right" min="0" max="1" value="0" aria-label="Right output"></meter></label><p id="audio-status" role="status">READY / Нажмите ноту</p></aside>
+      </div>
+      <footer><span>ZUROKA MELYS / 2.0</span><span>A S D F + J K L ; · HOLD TO PLAY · SPACE TO START / STOP</span><span>LISTEN TO EACH OTHER.</span></footer>
+    </section>
+  </main>
+  <script src="synth.js"></script>
+</body>
 </html>
